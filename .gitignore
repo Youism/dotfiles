@@ -1,0 +1,8 @@
+clash/
+fish/
+gh/
+
+.emacs.d/etc/*
+.emacs.d/elpa/*
+.emacs.d/elpy/*
+.emacs.d/var/*

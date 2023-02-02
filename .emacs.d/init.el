@@ -462,3 +462,11 @@
   (evil-collection-define-key 'normal 'dired-mode-map
     "H" 'dired-hide-dotfiles-mode))
 (put 'set-goal-column 'disabled nil)
+(put 'scroll-left 'disabled nil)
+
+(require 'multiple-cursors)
+(windmove-default-keybindings)
+(pending-delete-mode t)
+
+
+

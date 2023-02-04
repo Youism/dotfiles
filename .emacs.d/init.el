@@ -53,8 +53,8 @@
 ;;       in Emacs and init.el will be generated automatically!
 
 ;; You will most likely need to adjust this font size for your system!
-(defvar efs/default-font-size 180)
-(defvar efs/default-variable-font-size 180)
+(defvar efs/default-font-size 170)
+(defvar efs/default-variable-font-size 170)
 
 ;; Make frame transparency overridable
 (defvar efs/frame-transparency '(95 . 95))
@@ -140,8 +140,12 @@
 (set-face-attribute 'variable-pitch nil :font "Fira Code Retina" :height efs/default-variable-font-size :weight 'regular)
 
 
+
+(defvar theme-list '(doom-ayu-mirage doom-palenight doom-ayu-dark doom-badger doom-challenger-deep doom-dark+ doom-dracula doom-earl-grey doom-ephemeral doom-fairy-floss doom-gruvbox doom-henna doom-homage-black doom-lantern doom-monokai-octagon doom-monokai-pro doom-one doom-opera doom-outrun-electric doom-tokyo-night doom-tomorrow-night doom-vibrant doom-sourcerer))
+;; (defvar theme-list '(doom-ayu-mirage))
+(defvar theme-name (nth (random (length theme-list)) theme-list))
 (use-package doom-themes
-  :init (load-theme 'doom-palenight t))
+  :init (load-theme theme-name t))
 
 
 (use-package all-the-icons)
@@ -414,6 +418,8 @@
 (use-package helm-lsp)
 (use-package yasnippet :ensure t)
 (require 'yasnippet)
+(require 'dap-lldb)
+
 (yas-global-mode 1)
 ;;# NO ADDITIONAL IMPORTS ALLOWED!
 ;; Enable autopep8
@@ -468,5 +474,13 @@
 (windmove-default-keybindings)
 (pending-delete-mode t)
 
+(require 'lsp)
+(require 'lsp-haskell)
+;; Hooks so haskell and literate haskell major modes trigger LSP setup
+(add-hook 'haskell-mode-hook #'lsp)
+(add-hook 'haskell-literate-mode-hook #'lsp)
 
-
+;; Welcome message (optional)
+(let ((inhibit-message t))
+  (message "Welcome to GNU Emacs / N Λ N O edition")
+  (message (format "Initialization time: %s" (emacs-init-time))))

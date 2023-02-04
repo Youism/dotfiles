@@ -23,13 +23,12 @@
  "C-c t" 'vterm-other-window
  "C-c s" 'switch-to-buffer
  "C-c <f5>" 'treemacs
- "C-c w" 'treemacs-add-project-to-workspace
  "C-c m" 'magit-commit
  "C-c M-r" 'sp-wrap-round
  "C-c M-c" 'sp-wrap-curly
  "C-c RET" 'yas-expand
  "<f5>" 'treemacs
- "C-c C-u" 'sp-unwrap-sexp
+ "C-c u" 'sp-unwrap-sexp
  )
 
 (global-unset-key (kbd "<escape>"))
@@ -76,6 +75,7 @@
  "C-SPC SPC" 'er/expand-region
  "C-SPC a" 'beginning-of-line-text
  "C-;" 'add-divided-symbol
+ "C-SPC s" 'replace-string
  )
 
 (defun add-divided-symbol ()

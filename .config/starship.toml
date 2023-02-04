@@ -70,6 +70,9 @@ symbol = " "
 [golang]
 symbol = " "
 
+[c]
+symbol = " "
+
 [hg_branch]
 symbol = " "
 
@@ -129,3 +132,6 @@ symbol = "ﯣ "
 format = "via [ Node.js $version](bold green) "
 detect_files = ["package.json", ".node-version"]
 detect_folders = ["node_modules"]
+
+[os.symbols]
+Macos = " "

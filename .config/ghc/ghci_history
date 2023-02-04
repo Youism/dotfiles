@@ -1,3 +1,28 @@
+double 8.4
+double "he"
+double 3
+:l baby
+double 3
+type double
+type(double)
+(double )
+double
+double x = x * 2
+9 `div` 3
+`div`
+min 3 min 8 9
+min 3 (min 8 9)
+min 2 3
+min 33 3 3 
+succ 9
+a = 'ddd
+'jkjk = 3
+'jk
+'hh' == 'hh'
+8 + 3
+clear
+ls
+:?
 3+"dd"
 4/=4
 True

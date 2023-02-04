@@ -102,6 +102,7 @@ vim.api.nvim_set_keymap("n", "<Leader>fi", ":e $HOME/.config/fish/config.fish<CR
 vim.api.nvim_set_keymap("n", "<Leader>aa", "ggVG", {silent = true, noremap = true})
 -- Map the mapleader key followed by gl to the $ command, which moves the cursor to the end of the line
 keymap("n", "gl", "$", {silent = true, noremap = true})
+keymap("n", "<C-b>", "viw", {silent = true, noremap = true})
 keymap("n", "gh", "0", {silent = true, noremap = true})
 keymap("n", "ge", "G", {silent = true, noremap = true})
 keymap("n", "W", "5w", {silent = true, noremap = true})

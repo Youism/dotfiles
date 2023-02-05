@@ -100,10 +100,8 @@ export   GUILE_AUTO_COMPILE=0
 # aliases
 
 alias ls="exa"
-alias ls="ls -p -G"
-alias la="ls -A"
-alias ll="ls -lha"
-alias lla="ll -A"
+alias ll="exa --long --header --git --icons --all"
+alias tree="ll --tree --level=4 -a -I=.git --git-ignore"
 alias bi="brew install"
 alias bic="brew install --cask"
 alias b="brew"
@@ -125,8 +123,11 @@ alias cd...="cd ../.."
 alias tnew="tmux new -s"
 alias cl="clear"
 alias mk="mkdir"
+alias v="fd --type f --hidden --exclude .git --print0 | fzf-tmux -p - --read0 --print0 --exit-0 | xargs -r -0 nvim"
 # alias gll="git log --graph --decorate --oneline --all --colors"
 alias gll="git lol"
+# end alias defination
+
 export  PATH=/usr/bin:$PATH
 export  PATH=/bin:$PATH
 export  PATH=/usr/local/sbin:$PATH

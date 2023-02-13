@@ -1,18 +1,10 @@
 ;; replaces forward-sentence
-(global-set-key (kbd "M-n")
-                (lambda () (interactive) (next-line 5)))
+;; (global-set-key (kbd "M-n")
+;;                 (lambda () (interactive) (next-line 5)))
 
-;; replaces forward-sentence
-(global-set-key (kbd "M-p")
-                (lambda () (interactive) (previous-line 5)))
-
-
-(global-set-key (kbd "C-c C-k") 'kill-this-buffer)
- (global-set-key (kbd "M-n")
-                 (lambda () (interactive) (next-line 5)))
- ;; replaces forward-sentence
- (global-set-key (kbd "M-p")
-                 (lambda () (interactive) (previous-line 5)))
+;; ;; replaces forward-sentence
+;; (global-set-key (kbd "M-p")
+;;                 (lambda () (interactive) (previous-line 5)))
 
 ;; (define-key key-translation-map (kbd "M-m") (kbd "C-@"))
 ;; ** Global Keybindings
@@ -29,6 +21,9 @@
  "C-c RET" 'yas-expand
  "<f5>" 'treemacs
  "C-c u" 'sp-unwrap-sexp
+ "M-n" 'good-scroll-up
+ "M-p" 'good-scroll-down
+ 
  )
 
 (global-unset-key (kbd "<escape>"))
@@ -38,7 +33,7 @@
   (unless (file-exists-p "Makefile")
     (set (make-local-variable 'compile-command)
      (let ((file (file-name-nondirectory buffer-file-name)))
-       (format "%s -o %s %s"
+       (format "%s -g -Wall -o %s %s"
            (if  (equal (file-name-extension file) "cpp") "g++" "gcc" )
            (file-name-sans-extension file)
            file)))
@@ -73,13 +68,28 @@
 (general-define-key
  "C-c -" 'select-current-line
  "C-SPC SPC" 'er/expand-region
- "C-SPC a" 'beginning-of-line-text
  "C-;" 'add-divided-symbol
  "C-SPC s" 'replace-string
+ "C-SPC c" 'sp-change-enclosing
+ "C-SPC d" 'delete-current-line
+ "C-SPC f f" 'vimish-fold
+ "C-SPC f d" 'vimish-fold-delete
+ "C-v" 'View-scroll-half-page-forward
+ "M-v" 'View-scroll-half-page-backward
  )
 
+;; Function for keybindings
 (defun add-divided-symbol ()
   (interactive)
   (end-of-line)
   (insert ";")
   (newline-and-indent))
+
+(defun delete-current-line ()
+  (interactive)
+  (beginning-of-line)
+  (kill-line)
+  (indent-for-tab-command))
+(global-set-key [next] 'good-scroll-up-full-screen)
+(global-set-key [prior] 'good-scroll-down-full-screen)
+

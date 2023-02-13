@@ -82,49 +82,57 @@ keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 
-
-
-
 -- Set the mapleader option to a single space character
 vim.g.mapleader = " "
-vim.api.nvim_set_keymap("n", "<F8>", ":TagbarToggle<CR>", {silent = true})
-vim.api.nvim_set_keymap("n", ";", ":", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<Leader>q", ":q<CR>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<Leader>nn", ":noh<CR>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<Leader>bb", ":bn<CR>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<Leader>bk", ":Bdelete<CR>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<Leader>ss", ":w<CR>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<Leader>rc", ":e $HOME/.config/nvim/lua/user/keymaps.lua<CR>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<Leader>pl", ":e $HOME/.config/nvim/lua/user/plugins.lua.lua<CR>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<Leader>zs", ":e $HOME/.zshrc<CR>", {silent = true, noremap = true})
-vim.api.nvim_set_keymap("n", "<Leader>fi", ":e $HOME/.config/fish/config.fish<CR>", {silent = true, noremap = true})
+vim.api.nvim_set_keymap("n", "<F8>", ":TagbarToggle<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", ";", ":", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<Leader>q", ":q<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<Leader>nn", ":noh<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<Leader>bb", ":bn<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<Leader>bk", ":Bdelete<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<Leader>ss", ":w<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap(
+	"n",
+	"<Leader>rc",
+	":e $HOME/.config/nvim/lua/user/keymaps.lua<CR>",
+	{ silent = true, noremap = true }
+)
+vim.api.nvim_set_keymap(
+	"n",
+	"<Leader>pl",
+	":e $HOME/.config/nvim/lua/user/plugins.lua.lua<CR>",
+	{ silent = true, noremap = true }
+)
+vim.api.nvim_set_keymap("n", "<Leader>zs", ":e $HOME/.zshrc<CR>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<Leader>fi", ":e $HOME/.config/fish/config.fish<CR>", { silent = true, noremap = true })
 -- Map the mapleader key followed by aa to the ggVG command, which selects all text in the current buffer
-vim.api.nvim_set_keymap("n", "<Leader>aa", "ggVG", {silent = true, noremap = true})
+vim.api.nvim_set_keymap("n", "<Leader>aa", "ggVG", { silent = true, noremap = true })
 -- Map the mapleader key followed by gl to the $ command, which moves the cursor to the end of the line
-keymap("n", "gl", "$", {silent = true, noremap = true})
-keymap("n", "<C-b>", "viw", {silent = true, noremap = true})
-keymap("n", "gh", "0", {silent = true, noremap = true})
-keymap("n", "ge", "G", {silent = true, noremap = true})
-keymap("n", "W", "5w", {silent = true, noremap = true})
-keymap("n", "B", "5b", {silent = true, noremap = true})
-keymap("n", "J", "5j", {silent = true, noremap = true})
-keymap("n", "K", "5k", {silent = true, noremap = true})
-keymap("n", "L", "A", {silent = true, noremap = true})
-keymap("n", "H", "5h", {silent = true, noremap = true})
-keymap("n", "<Leader>w", "<C-w>w", {silent = true, noremap = true})
-keymap("n", "<Leader>k", "<C-w>k", {silent = true, noremap = true})
-keymap("n", "<Leader>l", "<C-w>l", {silent = true, noremap = true})
-keymap("n", "<Leader>h", "<C-w>h", {silent = true, noremap = true})
-keymap("n", "<Leader>j", "<C-w>j", {silent = true, noremap = true})
-keymap("n", "<Leader>vv", ":vs<CR>", {silent = true, noremap = true})
-keymap("i", "jk", "<Esc>", {silent = true, noremap = true})
-keymap("i", "JK", "<Esc>", {silent = true, noremap = true})
-keymap("v", "gl", "$", {silent = true, noremap = true})
-keymap("v", "gh", "0", {silent = true, noremap = true})
-keymap("v", "ge", "G", {silent = true, noremap = true})
-keymap("v", "B", "5b", {silent = true, noremap = true})
-keymap("v", "J", "5j", {silent = true, noremap = true})
-keymap("v", "K", "5k", {silent = true, noremap = true})
-keymap("v", "L", "5l", {silent = true, noremap = true})
-keymap("v", "H", "5h", {silent = true, noremap = true})
-
+keymap("n", "gl", "$", { silent = true, noremap = true })
+keymap("n", "gh", "0", { silent = true, noremap = true })
+keymap("n", "ge", "G", { silent = true, noremap = true })
+keymap("n", "W", "5w", { silent = true, noremap = true })
+keymap("n", "B", "5b", { silent = true, noremap = true })
+keymap("n", "J", "5j", { silent = true, noremap = true })
+keymap("n", "K", "5k", { silent = true, noremap = true })
+keymap("n", "L", "A", { silent = true, noremap = true })
+keymap("n", "H", "5h", { silent = true, noremap = true })
+keymap("n", "<Leader>ww", "<C-w>w", { silent = true, noremap = true })
+keymap("n", "<Leader>kk", "<C-w>k", { silent = true, noremap = true })
+keymap("n", "<Leader>ll", "<C-w>l", { silent = true, noremap = true })
+keymap("n", "<Leader>hh", "<C-w>h", { silent = true, noremap = true })
+keymap("n", "<Leader>jj", "<C-w>j", { silent = true, noremap = true })
+keymap("n", "<Leader>vv", ":vs<CR>", { silent = true, noremap = true })
+keymap("i", "jk", "<Esc>", { silent = true, noremap = true })
+keymap("i", "JK", "<Esc>", { silent = true, noremap = true })
+keymap("v", "gl", "$", { silent = true, noremap = true })
+keymap("v", "gh", "0", { silent = true, noremap = true })
+keymap("v", "ge", "G", { silent = true, noremap = true })
+keymap("v", "B", "5b", { silent = true, noremap = true })
+keymap("v", "J", "5j", { silent = true, noremap = true })
+keymap("v", "K", "5k", { silent = true, noremap = true })
+keymap("v", "L", "5l", { silent = true, noremap = true })
+keymap("v", "H", "5h", { silent = true, noremap = true })
+-- place this in one of your configuration file(s)
+keymap("n", "<Leader>hw", ":HopWord<CR>", { silent = true, noremap = true })
+keymap("n", "<Leader>hl", ":HopLineStart<CR>", { silent = true, noremap = true })

@@ -141,13 +141,12 @@
 
 
 
-(defvar theme-list '(doom-ayu-mirage doom-palenight doom-ayu-dark doom-badger doom-challenger-deep doom-dark+ doom-dracula doom-earl-grey doom-ephemeral doom-fairy-floss doom-gruvbox doom-henna doom-homage-black doom-lantern doom-monokai-octagon doom-monokai-pro doom-one doom-opera doom-outrun-electric doom-tokyo-night doom-tomorrow-night doom-vibrant doom-sourcerer))
+(defvar theme-list '(doom-ayu-mirage doom-palenight doom-ayu-dark doom-badger doom-challenger-deep doom-dark+ doom-dracula doom-earl-grey doom-ephemeral doom-fairy-floss doom-gruvbox doom-henna doom-homage-black doom-lantern doom-monokai-octagon doom-monokai-pro doom-one doom-opera doom-outrun-electric doom-tokyo-night doom-tomorrow-night doom-vibrant doom-sourcerer doom-ephemeral  doom-fairy-floss        doom-feather-dark doom-feather-light      doom-flatwhite          doom-gruvbox            doom-gruvbox-light      doom-henna      doom-homage-black  doom-homage-white  doom-horizon      doom-Iosvkem    doom-ir-black   doom-lantern    doom-laserwave  doom-manegarm   orig doom-material      doom-material-dark  doom-meltbus        doom-miramare   doom-molokai    doom-monokai-classic doom-monokai-machine doom-monokai-octagon doom-monokai-pro    doom-monokai-ristret doom-monokai-spectru doom-moonlight     doom-nord       doom-nord-aurora doom-nord-light doom-nova doom-oceanic-next doom-old-hope doom-one doom-one-light doom-opera orig doom-opera-light doom-outrun-electricported doom-palenight doom-peacock doom-pine doom-plain doom-plain-dark doom-rouge doom-shades-of-purpl doom-snazzy doom-solarized-dark doom-solarized-dark-y doom-solarized-light doom-sourcerer doom-spacegrey doom-tokyo-night doom-tomorrow-day doom-tomorrow-night doom-vibrant doom-wilmersdorf doom-xcode doom-zenburn))
 ;; (defvar theme-list '(doom-ayu-mirage))
 (defvar theme-name (nth (random (length theme-list)) theme-list))
 (use-package doom-themes
   :init (load-theme theme-name t))
-
-
+(message "Theme name is %s" theme-name)
 (use-package all-the-icons)
 
 (use-package doom-modeline
@@ -479,8 +478,45 @@
 ;; Hooks so haskell and literate haskell major modes trigger LSP setup
 (add-hook 'haskell-mode-hook #'lsp)
 (add-hook 'haskell-literate-mode-hook #'lsp)
+(require 'smartparens-config)
+(good-scroll-mode 1)
 
-;; Welcome message (optional)
-(let ((inhibit-message t))
-  (message "Welcome to GNU Emacs / N Λ N O edition")
-  (message (format "Initialization time: %s" (emacs-init-time))))
+(leaf dap-mode
+  :ensure t
+  :init
+  (dap-mode 1)
+  (dap-tooltip-mode 1)
+  (dap-auto-configure-mode 1)
+  (dap-ui-controls-mode 1)
+  :require t dap-lldb
+  :bind
+  (:dap-mode-map
+   ([f6] . dap-debug)
+   ("M-d i" . dap-step-in)
+   ("M-d o" . dap-step-out)
+   ("M-d n" . dap-next)
+   ("M-d g" . dap-continue)
+   ("M-d t" . dap-breakpoint-toggle))
+  :config
+  (leaf dap-ui
+    :ensure nil
+    :require t
+    :config
+    (dap-ui-mode 1))
+  :custom
+  (dap-auto-configure-features . '(sessions locals breakpoints expressions repl controls tooltip))
+  (dap-lldb-debug-program . `(,(expand-file-name "~/.vscode/extensions/lanza.lldb-vscode-0.2.3/bin/darwin/bin/lldb-vscode"))))
+
+;; Eval Buffer with `M-x eval-buffer' to register the newly created template.
+
+;; (dap-register-debug-template
+;;   "LLDB::Run"
+;;   (list :type "lldb-vscode"
+;;         :cwd "~/workspace/cpp"
+;;         :request "launch"
+;;         :args (list "-Q")
+;;         :program "nextstep/Emacs.app/Contents/MacOS/Emacs"
+;;         :name "LLDB::Run"))
+
+(beacon-mode 1)
+(vimish-fold-global-mode 1)

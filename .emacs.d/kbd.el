@@ -23,7 +23,6 @@
  "C-c u" 'sp-unwrap-sexp
  "M-n" 'good-scroll-up
  "M-p" 'good-scroll-down
- 
  )
 
 (global-unset-key (kbd "<escape>"))
@@ -76,6 +75,8 @@
  "C-SPC f d" 'vimish-fold-delete
  "C-v" 'View-scroll-half-page-forward
  "M-v" 'View-scroll-half-page-backward
+ "M-m" 'jump-char-forward
+ "C-]" 'add-curly
  )
 
 ;; Function for keybindings
@@ -93,3 +94,13 @@
 (global-set-key [next] 'good-scroll-up-full-screen)
 (global-set-key [prior] 'good-scroll-down-full-screen)
 
+(defun add-curly ()
+  (interactive)
+  (end-of-line)
+  (insert "{")
+  (newline-and-indent)
+  (insert "}")
+  (beginning-of-line)
+  (newline-and-indent)
+  (previous-line)
+  (indent-for-tab-command))

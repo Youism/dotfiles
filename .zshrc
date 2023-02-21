@@ -111,13 +111,14 @@ alias op=open
 alias g=git
 alias ga="git add"
 alias ga.="git add ."
-alias gm="git commit -m"
+alias gm="git commit -am"
 alias gl="git log"
 alias gt="git status"
 alias gb="git branch"
 alias gd="git diff"
 alias gs="git switch"
 alias vi=nvim
+alias unproxy="unset all_proxy && unset ALL_PROXY"
 alias cd..="cd .."
 alias cd...="cd ../.."
 alias tnew="tmux new -s"
@@ -138,6 +139,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 export   PATH=/usr/localwbin:$PATH
 export   PATH=/opt/homebrew/bin:$PATH
+export   PATH=~/bin:$PATH
 export   PATH=/opt/homebrew/sbin:$PATH
 export   PATH=/Users/pengyo/Library/Python/3.10/bin:$PATH
 export   PATH=/Users/pengyo/.cargo/bin:$PATH
@@ -150,3 +152,19 @@ git config --global http.proxy socks5://127.0.0.1:7890
 git config --global https.proxy socks5://127.0.0.1:7890
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 eval "$(starship init zsh)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/pengyo/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/pengyo/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/pengyo/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/pengyo/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

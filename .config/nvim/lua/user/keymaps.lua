@@ -56,10 +56,12 @@ keymap("v", ">", ">gv", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>tt", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>tp", ":Telescope projects<CR>", opts)
+keymap("n", "<leader>tb", ":Telescope buffers<CR>", opts)
+keymap("v", "<leader>ff", ":fold<CR>, opts")
+keymap("n", "<leader>fc", ":foldopen<CR>, opts")
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
@@ -136,3 +138,4 @@ keymap("v", "H", "5h", { silent = true, noremap = true })
 -- place this in one of your configuration file(s)
 keymap("n", "<Leader>hw", ":HopWord<CR>", { silent = true, noremap = true })
 keymap("n", "<Leader>hl", ":HopLineStart<CR>", { silent = true, noremap = true })
+

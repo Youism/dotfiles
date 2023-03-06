@@ -1,0 +1,1 @@
+/Users/pengyo/.emacs.d/straight/repos/ChatGPT.el/chatgpt.el

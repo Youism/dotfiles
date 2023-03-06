@@ -100,7 +100,7 @@ export   GUILE_AUTO_COMPILE=0
 # aliases
 
 alias ls="exa"
-alias ll="exa --long --header --git --icons --all"
+alias l="exa --long --header --git --icons --all"
 alias tree="exa --icons --tree --level=4 -a -I=.git --git-ignore"
 alias bi="brew install"
 alias bic="brew install --cask"
@@ -128,6 +128,8 @@ alias v="fd --type f --hidden --exclude .git --print0 | fzf-tmux -p - --read0 --
 # alias gll="git log --graph --decorate --oneline --all --colors"
 alias gll="git lol"
 alias tl='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
+alias sd="cd /Volumes/Samsung_T5/"
+alias clash="op /Applications/ClashX.app"
 # end alias defination
 
 export  PATH=/usr/bin:$PATH
@@ -168,3 +170,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Set my function ()
+kclash ()
+{
+  osascript -e 'quit app "ClashX"'
+}
+
+init-rev ()
+{
+  cp -r /Volumes/Samsung_T5/github/reveal-ppt/* .
+}

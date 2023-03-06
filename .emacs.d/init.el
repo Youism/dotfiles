@@ -343,7 +343,7 @@
 (add-hook 'c++-mode-hook     #'lsp)
 (add-hook 'c-mode-hook     #'lsp)
 (add-hook 'LaTeX-mode-hook     #'lsp)
-;; (add-hook 'tex-mode-hook     #'lsp)
+(add-hook 'tex-mode-hook     #'lsp)
 ;;(add-hook 'java-mode-hook     #'lsp)
 ;; Add more languages as needed
 (require 'lsp-java)
@@ -530,7 +530,34 @@
 		    (lambda ()
 		      (push (list 'output-pdf "sioyek")
 			    Tex-view-program-selection))))
+(setq TeX-engine 'xetex)
+(setq TeX-command-default "XeLaTeX")
+(setq TeX-save-query nil)
+(setq TeX-show-compilation t)
 
+(require 'lsp-latex)
+(setq lsp-latex-texlab-executable "/opt/homebrew/bin/texlab")
 (with-eval-after-load "tex-mode"
   (add-hook 'tex-mode-hook 'lsp)
   (add-hook 'latex-mode-hook 'lsp))
+(with-eval-after-load "bibtex"
+  (add-hook 'bibtex-mode-hook 'lsp))
+
+(use-package ox-reveal)
+(setq org-reveal-root "file:///Volumes/Samsung_T5/github/reveal-ppt/reveal.js")
+;; (setq org-reveal-hlevel 2)
+
+;; (defvar bootstrap-version)
+;; (let ((bootstrap-file
+;;        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+;;       (bootstrap-version 6))
+;;   (unless (file-exists-p bootstrap-file)
+;;     (with-current-buffer
+;;         (url-retrieve-synchronously
+;;          "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+;;          'silent 'inhibit-cookies)
+;;       (goto-char (point-max))
+;;       (eval-print-last-sexp)))
+;;   (load bootstrap-file nil 'nomessage))
+
+(setq org-lowest-priority ?E)

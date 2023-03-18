@@ -1,3 +1,5 @@
+;; Package
+;; bm.el 
 ;; Define the init filen
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
@@ -141,7 +143,7 @@
 
 
 
-(defvar theme-list '(doom-ayu-mirage doom-palenight doom-ayu-dark doom-badger doom-challenger-deep doom-dark+ doom-dracula doom-earl-grey doom-ephemeral doom-fairy-floss doom-gruvbox doom-henna doom-homage-black doom-lantern doom-monokai-octagon doom-monokai-pro doom-one doom-opera doom-outrun-electric doom-tokyo-night doom-tomorrow-night doom-vibrant doom-sourcerer doom-ephemeral  doom-fairy-floss        doom-feather-dark doom-feather-light      doom-flatwhite          doom-gruvbox            doom-gruvbox-light      doom-henna      doom-homage-black  doom-homage-white  doom-horizon      doom-Iosvkem    doom-ir-black   doom-lantern    doom-laserwave  doom-manegarm   orig doom-material      doom-material-dark  doom-meltbus        doom-miramare   doom-molokai    doom-monokai-classic doom-monokai-machine doom-monokai-octagon doom-monokai-pro    doom-monokai-ristret doom-monokai-spectru doom-moonlight     doom-nord       doom-nord-aurora doom-nord-light doom-nova doom-oceanic-next doom-old-hope doom-one doom-one-light doom-opera orig doom-opera-light doom-outrun-electricported doom-palenight doom-peacock doom-pine doom-plain doom-plain-dark doom-rouge doom-shades-of-purpl doom-snazzy doom-solarized-dark doom-solarized-dark-y doom-solarized-light doom-sourcerer doom-spacegrey doom-tokyo-night doom-tomorrow-day doom-tomorrow-night doom-vibrant doom-wilmersdorf doom-xcode doom-zenburn))
+(defvar theme-list '(doom-ayu-mirage doom-palenight doom-ayu-dark doom-badger doom-challenger-deep doom-dark+ doom-dracula doom-earl-grey doom-ephemeral doom-fairy-floss doom-gruvbox doom-henna doom-homage-black doom-lantern doom-monokai-octagon doom-monokai-pro doom-one doom-opera doom-outrun-electric doom-tokyo-night doom-tomorrow-night doom-vibrant doom-sourcerer doom-ephemeral  doom-fairy-floss        doom-feather-dark doom-feather-light      doom-flatwhite          doom-gruvbox            doom-gruvbox-light      doom-henna      doom-homage-black  doom-homage-white  doom-horizon      doom-Iosvkem    doom-ir-black   doom-lantern    doom-laserwave  doom-manegarm   orig doom-material      doom-material-dark  doom-meltbus        doom-miramare   doom-molokai    doom-monokai-classic doom-monokai-machine doom-monokai-octagon doom-monokai-pro    doom-monokai-ristret doom-monokai-spectru doom-moonlight     doom-nord       doom-nord-aurora doom-nord-light doom-nova doom-oceanic-next doom-old-hope doom-one doom-one-light doom-opera orig doom-opera-light doom-outrun-electricported doom-palenight doom-peacock doom-pine  doom-rouge doom-shades-of-purpl doom-snazzy doom-solarized-dark doom-solarized-dark-y doom-solarized-light doom-sourcerer doom-spacegrey doom-tokyo-night doom-tomorrow-day doom-tomorrow-night doom-vibrant doom-wilmersdorf doom-xcode doom-zenburn))
 ;; (defvar theme-list '(doom-ayu-mirage))
 (defvar theme-name (nth (random (length theme-list)) theme-list))
 (use-package doom-themes
@@ -242,7 +244,15 @@
   :after org
   :hook (org-mode . org-bullets-mode)
   :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+  (org-bullets-bullet-list '("❀" "✪" "✹" "✦" "●" "○" "·")))
+;; (setq org-list-demote-modify-bullet
+;;       '(("1." . "❶") ("2." . "❷") ("3." . "❸") ("4." . "❹") ("5." . "❺") ("-" "")))
+
+(font-lock-add-keywords 'org-mode
+                        '(("^ +\\([-*]\\) "
+                           0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "➤")))
+                          ("\\(->\\)"
+                           0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "→")))))
 
 (defun efs/org-mode-visual-fill ()
   (setq visual-fill-column-width 100
@@ -516,13 +526,8 @@
 (vimish-fold-global-mode 1)
 
 ;; set path
-(getenv "PATH")
- (setenv "PATH"
-(concat
- "/Users/pengyo/bin" ":"
-
-(getenv "PATH")))
-
+(setenv "PATH" (concat (getenv "PATH") ":/Users/pengyo/bin/"))
+(add-to-list 'exec-path "/Users/pengyo/bin/")
 (use-package auctex
   :ensure t
   :defer t
@@ -561,3 +566,119 @@
 ;;   (load bootstrap-file nil 'nomessage))
 
 (setq org-lowest-priority ?E)
+
+;; org agenda
+(setq org-directory "/Volumes/Samsung_T5/Document/RoamNotes/")
+(setq org-agenda-files '("Tasks.org" "Tasks.org_archive"))
+
+
+(setq org-todo-keywords
+  '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+    (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+
+;; Configure custom agenda views
+(setq org-agenda-custom-commands
+  '(("d" "Dashboard"
+     ((agenda "" ((org-deadline-warning-days 7)))
+      (todo "NEXT"
+        ((org-agenda-overriding-header "Next Tasks")))
+      (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
+
+    ("n" "Next Tasks"
+     ((todo "NEXT"
+        ((org-agenda-overriding-header "Next Tasks")))))
+
+
+    ("W" "Work Tasks" tags-todo "+work")
+
+    ;; Low-effort next actions
+    ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+     ((org-agenda-overriding-header "Low Effort Tasks")
+      (org-agenda-max-todos 20)
+      (org-agenda-files org-agenda-files)))
+
+    ("w" "Workflow Status"
+     ((todo "WAIT"
+            ((org-agenda-overriding-header "Waiting on External")
+             (org-agenda-files org-agenda-files)))
+      (todo "REVIEW"
+            ((org-agenda-overriding-header "In Review")
+             (org-agenda-files org-agenda-files)))
+      (todo "PLAN"
+            ((org-agenda-overriding-header "In Planning")
+             (org-agenda-todo-list-sublevels nil)
+             (org-agenda-files org-agenda-files)))
+      (todo "BACKLOG"
+            ((org-agenda-overriding-header "Project Backlog")
+             (org-agenda-todo-list-sublevels nil)
+             (org-agenda-files org-agenda-files)))
+      (todo "READY"
+            ((org-agenda-overriding-header "Ready for Work")
+             (org-agenda-files org-agenda-files)))
+      (todo "ACTIVE"
+            ((org-agenda-overriding-header "Active Projects")
+             (org-agenda-files org-agenda-files)))
+      (todo "COMPLETED"
+            ((org-agenda-overriding-header "Completed Projects")
+             (org-agenda-files org-agenda-files)))
+      (todo "CANC"
+            ((org-agenda-overriding-header "Cancelled Projects")
+             (org-agenda-files org-agenda-files)))))))
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "/Volumes/Samsung_T5/Document/RoamNotes/Tasks.org" "Inbox")
+         "* TODO %?\n  %i\n")))
+;; Emacs Dashboard
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+;; Set the title
+(setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
+;; Set the banner
+(setq dashboard-startup-banner 3)
+;; Value can be
+;; - nil to display no banner
+;; - 'official which displays the official emacs logo
+;; - 'logo which displays an alternative emacs logo
+;; - 1, 2 or 3 which displays one of the text banners
+;; - "path/to/your/image.gif", "path/to/your/image.png" or "path/to/your/text.txt" which displays whatever gif/image/text you would prefer
+;; - a cons of '("path/to/your/image.png" . "path/to/your/text.txt")
+
+;; Content is not centered by default. To center, set
+(setq dashboard-center-content t)
+
+;; To disable shortcut "jump" indicators for each section, set
+(setq dashboard-show-shortcuts t)
+(setq dashboard-items '((recents  . 5)
+                        (bookmarks . 5)
+                        (projects . 5)
+                        (agenda . 5)))
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
+(setq dashboard-set-navigator t)
+
+(setq org-latex-create-formula-image-program 'imagemagick)
+
+
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "/Volumes/Samsung_T5/Document/RoamNotes"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol))
+
+;; bm.el
+(setq bm-in-lifo-order t)
+;; (setq temporary-bookmark-p t)

@@ -1,15 +1,8 @@
 ;; replaces forward-sentence
 ;; (global-set-key (kbd "M-n")
 ;;                 (lambda () (interactive) (next-line 5)))
-
-;; ;; replaces forward-sentence
-;; (global-set-key (kbd "M-p")
-;;                 (lambda () (interactive) (previous-line 5)))
-
-;; (define-key key-translation-map (kbd "M-m") (kbd "C-@"))
 ;; ** Global Keybindings
 (general-define-key
- "C-c b" 'buffer-menu
  "C-c k" 'kill-this-buffer
  "C-c e" 'eval-buffer
  "C-c t" 'vterm-other-window
@@ -27,6 +20,41 @@
 
 (global-unset-key (kbd "<escape>"))
 (global-set-key (kbd "<escape>") (kbd "C-g"))
+(global-unset-key (kbd "C-SPC"))
+(general-define-key
+ "C-c -" 'select-current-line
+ "C-SPC SPC" 'er/expand-region
+ "C-SPC b b" 'bm-toggle
+ "C-SPC b n" 'bm-next
+ "C-SPC b p" 'bm-previous
+ "C-SPC s" 'replace-string
+ "C-SPC c" 'sp-change-enclosing
+ "C-SPC d" 'delete-current-line
+ "C-SPC C-d" 'total-delete-line
+ "C-SPC f f" 'vimish-fold
+ "C-SPC f d" 'vimish-fold-delete
+ "M-m" 'jump-char-forward
+ "C-]" 'add-curly
+ "C-c f" 'find-in-ssd
+ )
+;; keybindings for multiple cursors
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+(general-define-key
+ :keymaps 'c++-mode-map
+ "C-;" 'add-divided-symbol
+ "<f9>" 'code-compile)
+
+(general-define-key
+ :keymap 'python-mode-map
+ "C-;" 'add-common-symbol
+ )
+
+(global-set-key [next] 'good-scroll-up-full-screen)
+(global-set-key [prior] 'good-scroll-down-full-screen)
+
 (defun code-compile ()
   (interactive)
   (unless (file-exists-p "Makefile")
@@ -38,14 +66,6 @@
            file)))
     (compile compile-command)))
 
-(general-define-key
- :keymaps 'c++-mode-map
- "<f9>" 'code-compile)
- 
-;; keybindings for multiple cursors
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 
 ;; keybindings for my editon
@@ -63,21 +83,6 @@
   (beginning-of-line)
   (set-mark-command nil)
   (end-of-line))
-(global-unset-key (kbd "C-SPC"))
-(general-define-key
- "C-c -" 'select-current-line
- "C-SPC SPC" 'er/expand-region
- "C-;" 'add-divided-symbol
- "C-SPC s" 'replace-string
- "C-SPC c" 'sp-change-enclosing
- "C-SPC d" 'delete-current-line
- "C-SPC f f" 'vimish-fold
- "C-SPC f d" 'vimish-fold-delete
- "C-v" 'View-scroll-half-page-forward
- "M-v" 'View-scroll-half-page-backward
- "M-m" 'jump-char-forward
- "C-]" 'add-curly
- )
 
 ;; Function for keybindings
 (defun add-divided-symbol ()
@@ -86,13 +91,26 @@
   (insert ";")
   (newline-and-indent))
 
+
+(defun add-common-symbol ()
+  (interactive)
+  (end-of-line)
+  (insert ":")
+  (newline-and-indent))
+
 (defun delete-current-line ()
   (interactive)
   (beginning-of-line)
   (kill-line)
   (indent-for-tab-command))
-(global-set-key [next] 'good-scroll-up-full-screen)
-(global-set-key [prior] 'good-scroll-down-full-screen)
+
+(defun total-delete-line ()
+  (interactive)
+  (beginning-of-line)
+  (kill-line)
+  (kill-line)
+  (indent-for-tab-command))
+  
 
 (defun add-curly ()
   (interactive)
@@ -104,3 +122,8 @@
   (newline-and-indent)
   (previous-line)
   (indent-for-tab-command))
+
+(defun find-in-ssd ()
+  (interactive)
+  (find-file "/Volumes/Samsung_T5/" ))
+

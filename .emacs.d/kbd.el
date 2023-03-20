@@ -6,9 +6,7 @@
  "C-c k" 'kill-this-buffer
  "C-c e" 'eval-buffer
  "C-c t" 'vterm-other-window
- "C-c s" 'switch-to-buffer
  "C-c <f5>" 'treemacs
- "C-c m" 'magit-commit
  "C-c M-r" 'sp-wrap-round
  "C-c M-c" 'sp-wrap-curly
  "C-c RET" 'yas-expand
@@ -16,6 +14,12 @@
  "C-c u" 'sp-unwrap-sexp
  "M-n" 'good-scroll-up
  "M-p" 'good-scroll-down
+ "C-c l i" 'lsp-ui-imenu
+ "M-g j" 'dumb-jump-hydra/body
+ "C-v" 'my-scroll-up
+ "M-v" 'my-scroll-down
+ "C-M-v" 'my-scroll-other-window-up
+ "C-S-M-v" 'my-scroll-other-window-down
  )
 
 (global-unset-key (kbd "<escape>"))
@@ -23,7 +27,7 @@
 (global-unset-key (kbd "C-SPC"))
 (general-define-key
  "C-c -" 'select-current-line
- "C-SPC SPC" 'er/expand-region
+ "C-=" 'er/expand-region
  "C-SPC b b" 'bm-toggle
  "C-SPC b n" 'bm-next
  "C-SPC b p" 'bm-previous
@@ -34,6 +38,7 @@
  "C-SPC f f" 'vimish-fold
  "C-SPC f d" 'vimish-fold-delete
  "M-m" 'jump-char-forward
+ "C-M-m" 'jump-char-backward
  "C-]" 'add-curly
  "C-c f" 'find-in-ssd
  )
@@ -51,6 +56,19 @@
  :keymap 'python-mode-map
  "C-;" 'add-common-symbol
  )
+
+;; Dunp-Jump
+(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+(setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+(defhydra dumb-jump-hydra (:color blue :columns 3)
+    "Dumb Jump"
+    ("j" dumb-jump-go "Go")
+    ("o" dumb-jump-go-other-window "Other window")
+    ("e" dumb-jump-go-prefer-external "Go external")
+    ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
+    ("i" dumb-jump-go-prompt "Prompt")
+    ("l" dumb-jump-quick-look "Quick look")
+    ("b" dumb-jump-back "Back"))
 
 (global-set-key [next] 'good-scroll-up-full-screen)
 (global-set-key [prior] 'good-scroll-down-full-screen)
@@ -126,4 +144,21 @@
 (defun find-in-ssd ()
   (interactive)
   (find-file "/Volumes/Samsung_T5/" ))
+
+(defvar my-window-height (/ (* 2 (window-height)) 3))
+(defun my-scroll-up ()
+  (interactive)
+  (scroll-up my-window-height))
+
+(defun my-scroll-down ()
+  (interactive)
+  (scroll-down my-window-height))
+
+(defun my-scroll-other-window-up ()
+  (interactive)
+  (scroll-other-window-up my-window-height))
+
+(defun my-scroll-other-window-down ()
+  (interactive)
+  (scroll-other-window-down my-window-height))
 

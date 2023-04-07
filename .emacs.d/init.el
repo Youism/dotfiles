@@ -1,5 +1,5 @@
 ;; Package
-;; bm.el 
+;; bm.el
 ;; Define the init filen
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
@@ -37,7 +37,7 @@
 (defvar efs/default-variable-font-size 160)
 
 ;; Make frame transparency overridable
-(defvar efs/frame-transparency '(95 . 95))
+(defvar efs/frame-transparency '(98 . 98))
 
 
 ;; Initialize package sources
@@ -73,6 +73,7 @@
 ;; Disable line numbers for some modes
 (dolist (mode '(org-mode-hook
                 term-mode-hook
+		vterm-mode-hook
                 shell-mode-hook
                 treemacs-mode-hook
                 eshell-mode-hook))
@@ -119,7 +120,7 @@
                   (org-level-6 . 1.1)
                   (org-level-7 . 1.1)
                   (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "Iosevka Fixed SS04" :weight 'regular :height (cdr face)))
+    (set-face-attribute (car face) nil :font "FiraCode Nerd Font" :weight 'regular :height (cdr face)))
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
   (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
@@ -168,7 +169,7 @@
 
 
 
- ;; Sensible line breaking
+;; Sensible line breaking
 (add-hook 'text-mode-hook 'visual-line-mode)
 
 ;; Overwrite selected text
@@ -213,57 +214,57 @@
 
 
 (setq org-todo-keywords
-  '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-    (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+	(sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
 
 ;; Configure custom agenda views
 (setq org-agenda-custom-commands
-  '(("d" "Dashboard"
-     ((agenda "" ((org-deadline-warning-days 7)))
-      (todo "NEXT"
-        ((org-agenda-overriding-header "Next Tasks")))
-      (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
+      '(("d" "Dashboard"
+	 ((agenda "" ((org-deadline-warning-days 7)))
+	  (todo "NEXT"
+		((org-agenda-overriding-header "Next Tasks")))
+	  (tags-todo "agenda/ACTIVE" ((org-agenda-overriding-header "Active Projects")))))
 
-    ("n" "Next Tasks"
-     ((todo "NEXT"
-        ((org-agenda-overriding-header "Next Tasks")))))
+	("n" "Next Tasks"
+	 ((todo "NEXT"
+		((org-agenda-overriding-header "Next Tasks")))))
 
 
-    ("W" "Work Tasks" tags-todo "+work")
+	("W" "Work Tasks" tags-todo "+work")
 
-    ;; Low-effort next actions
-    ("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
-     ((org-agenda-overriding-header "Low Effort Tasks")
-      (org-agenda-max-todos 20)
-      (org-agenda-files org-agenda-files)))
+	;; Low-effort next actions
+	("e" tags-todo "+TODO=\"NEXT\"+Effort<15&+Effort>0"
+	 ((org-agenda-overriding-header "Low Effort Tasks")
+	  (org-agenda-max-todos 20)
+	  (org-agenda-files org-agenda-files)))
 
-    ("w" "Workflow Status"
-     ((todo "WAIT"
-            ((org-agenda-overriding-header "Waiting on External")
-             (org-agenda-files org-agenda-files)))
-      (todo "REVIEW"
-            ((org-agenda-overriding-header "In Review")
-             (org-agenda-files org-agenda-files)))
-      (todo "PLAN"
-            ((org-agenda-overriding-header "In Planning")
-             (org-agenda-todo-list-sublevels nil)
-             (org-agenda-files org-agenda-files)))
-      (todo "BACKLOG"
-            ((org-agenda-overriding-header "Project Backlog")
-             (org-agenda-todo-list-sublevels nil)
-             (org-agenda-files org-agenda-files)))
-      (todo "READY"
-            ((org-agenda-overriding-header "Ready for Work")
-             (org-agenda-files org-agenda-files)))
-      (todo "ACTIVE"
-            ((org-agenda-overriding-header "Active Projects")
-             (org-agenda-files org-agenda-files)))
-      (todo "COMPLETED"
-            ((org-agenda-overriding-header "Completed Projects")
-             (org-agenda-files org-agenda-files)))
-      (todo "CANC"
-            ((org-agenda-overriding-header "Cancelled Projects")
-             (org-agenda-files org-agenda-files)))))))
+	("w" "Workflow Status"
+	 ((todo "WAIT"
+		((org-agenda-overriding-header "Waiting on External")
+		 (org-agenda-files org-agenda-files)))
+	  (todo "REVIEW"
+		((org-agenda-overriding-header "In Review")
+		 (org-agenda-files org-agenda-files)))
+	  (todo "PLAN"
+		((org-agenda-overriding-header "In Planning")
+		 (org-agenda-todo-list-sublevels nil)
+		 (org-agenda-files org-agenda-files)))
+	  (todo "BACKLOG"
+		((org-agenda-overriding-header "Project Backlog")
+		 (org-agenda-todo-list-sublevels nil)
+		 (org-agenda-files org-agenda-files)))
+	  (todo "READY"
+		((org-agenda-overriding-header "Ready for Work")
+		 (org-agenda-files org-agenda-files)))
+	  (todo "ACTIVE"
+		((org-agenda-overriding-header "Active Projects")
+		 (org-agenda-files org-agenda-files)))
+	  (todo "COMPLETED"
+		((org-agenda-overriding-header "Completed Projects")
+		 (org-agenda-files org-agenda-files)))
+	  (todo "CANC"
+		((org-agenda-overriding-header "Cancelled Projects")
+		 (org-agenda-files org-agenda-files)))))))
 
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "/Volumes/Samsung_T5/Document/RoamNotes/Tasks.org" "Inbox")
@@ -301,6 +302,22 @@
 (setq bm-in-lifo-order t)
 ;; (setq temporary-bookmark-p t)
 (setq bm-cycle-all-buffers t)
-(setq lsp-keep-workspace-alive nil)
-(setq lsp-session-file "/Volumes/Samsung_T5/.Cache/Session")
-(advice-add 'lsp :before (lambda (&rest _args) (eval '(setf (lsp-session-server-id->folders (lsp-session)) (ht)))))
+;; (setq lsp-session-file "/Volumes/Samsung_T5/.Cache/Session")
+
+
+;; Format-all
+(add-hook 'prog-mode-hook 'format-all-mode)
+(add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
+
+(drag-stuff-mode t)
+(drag-stuff-global-mode 1)
+(drag-stuff-define-keys)
+
+(setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f"
+                              "xelatex -interaction nonstopmode %f"))
+(setq org-latex-default-packages-alist
+      (remove '("AUTO" "inputenc" t) org-latex-default-packages-alist))
+
+(global-set-key [remap kill-ring-save] 'easy-kill)
+(global-set-key [remap mark-sexp] 'easy-mark)
+(put 'narrow-to-region 'disabled nil)

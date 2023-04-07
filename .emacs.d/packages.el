@@ -30,7 +30,7 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-  ;; Initialize use-package on non-Linux platforms
+;; Initialize use-package on non-Linux platforms
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
@@ -50,7 +50,7 @@
 
 ;; NOTE: If you want to move everything out of the ~/.emacs.d folder
 ;; reliably, set `user-emacs-directory` before loading no-littering!
-;(setq user-emacs-directory "~/.cache/emacs")
+					;(setq user-emacs-directory "~/.cache/emacs")
 
 (use-package no-littering)
 
@@ -105,14 +105,14 @@
   (ivy-prescient-enable-filtering nil)
   :config
   ;; Uncomment the following line to have sorting remembered across sessions!
-  ;(prescient-persist-mode 1)
+					;(prescient-persist-mode 1)
   (ivy-prescient-mode 1))
 
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode)
   :custom
-  (org-bullets-bullet-list '("❀" "✪" "✹" "✦" "●" "○" "·")))
+  (org-bullets-bullet-list '("❀" "✪" "●" "○" "✹" "✦" "·")))
 ;; (setq org-list-demote-modify-bullet
 ;;       '(("1." . "❶") ("2." . "❷") ("3." . "❸") ("4." . "❹") ("5." . "❺") ("-" "")))
 
@@ -140,12 +140,12 @@
 
 (global-company-mode)
 (global-display-line-numbers-mode)
-  ;; Org-Mode initial setup
-  (use-package org
-    :bind
-    (("C-c C-l" . org-store-link)
-     ("C-c a" . org-agenda)
-     ("C-c c" . org-capture)))
+;; Org-Mode initial setup
+(use-package org
+  :bind
+  (("C-c C-l" . org-store-link)
+   ("C-c a" . org-agenda)
+   ("C-c c" . org-capture)))
 ;;(set-frame-font "CaskaydiaCove NF 12" nil t)
 (setq org-hide-emphasis-markers t)
 
@@ -154,9 +154,9 @@
   :after lsp-mode
   :hook (prog-mode . company-mode)
   :bind (:map company-active-map
-         ("<tab>" . company-complete-selection))
-        (:map lsp-mode-map
-         ("<tab>" . company-indent-or-complete-common))
+              ("<tab>" . company-complete-selection))
+  (:map lsp-mode-map
+        ("<tab>" . company-indent-or-complete-common))
   :custom
   (company-minimum-prefix-length 1)
   (company-idle-delay 0.0))
@@ -216,8 +216,8 @@
 ;;   (setq explicit-shell-file-name "zsh") ;; Change this to zsh, etc
 ;;   ;;(setq explicit-zsh-args '())         ;; Use 'explicit-<shell>-args for shell-specific args
 
-  ;; Match the default Bash shell prompt.  Update this if you have a custom prompt
-  ;; (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
+;; Match the default Bash shell prompt.  Update this if you have a custom prompt
+;; (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
 
 
 (use-package eterm-256color
@@ -289,7 +289,7 @@
   :hook (dired-mode . dired-hide-dotfiles-mode)
   :config
   (evil-collection-define-key 'normal 'dired-mode-map
-    "H" 'dired-hide-dotfiles-mode))
+			      "H" 'dired-hide-dotfiles-mode))
 (put 'set-goal-column 'disabled nil)
 (put 'scroll-left 'disabled nil)
 

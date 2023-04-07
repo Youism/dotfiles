@@ -102,10 +102,11 @@ export   GUILE_AUTO_COMPILE=0
 alias ls="exa"
 alias l="exa --long --header --git --icons --all"
 alias tree="exa --icons --tree --level=4 -a -I=.git --git-ignore"
+# alias tree="exa --icons --tree --level=4 -a "
 alias bi="brew install"
 alias bic="brew install --cask"
 alias b="brew"
-alias py="python3"
+alias py="python3.10"
 alias op=open
 # git command alias
 alias g=git
@@ -122,6 +123,7 @@ alias unproxy="unset all_proxy && unset ALL_PROXY"
 alias cd..="cd .."
 alias cd...="cd ../.."
 alias tnew="tmux new -s"
+alias ra="ranger"
 alias cl="clear"
 alias mk="mkdir"
 alias v="fd --type f --hidden --exclude .git --print0 | fzf-tmux -p - --read0 --print0 --exit-0 | xargs -r -0 nvim"
@@ -138,6 +140,7 @@ export  PATH=/usr/local/sbin:$PATH
 
 # export  PATH $HOME/.cargo/bin $PATH
 export HOMEBREW_NO_AUTO_UPDATE=1
+export OPENAI_API_KEY='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'
 
 export   PATH=/usr/localwbin:$PATH
 export   PATH=/opt/homebrew/bin:$PATH

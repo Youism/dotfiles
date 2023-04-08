@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: pclass
-# key: pclass
-# --
-public class $1 {
-    $0
-}

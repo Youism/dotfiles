@@ -1,8 +1,0 @@
-INDEX VERSION 1.131+/Users/pengyo/.dotfiles/.emacs.d/var/lsp-java/workspace/.metadata/.plugins/org.eclipse.jdt.core
-1865797976.index
-279823901.index
-3626508843.index
-450682604.index
-2066201783.index
-3842426239.index
-3453549936.index

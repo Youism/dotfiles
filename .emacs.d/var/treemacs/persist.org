@@ -1,9 +1,0 @@
-* Default
-** jlox
- - path :: ~/workspace/java/jlox
-** scheme
- - path :: /Volumes/Samsung_T5/Class/cs61a/scheme
-** proj2
- - path :: /Volumes/Samsung_T5/Class/cs61b/21sp/proj2
-** lab6
- - path :: /Volumes/Samsung_T5/Class/cs61b/21sp/lab6

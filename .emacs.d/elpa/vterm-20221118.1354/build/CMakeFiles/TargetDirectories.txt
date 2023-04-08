@@ -1,0 +1,4 @@
+/Users/pengyo/.emacs.d/elpa/vterm-20221118.1354/build/CMakeFiles/vterm-module.dir
+/Users/pengyo/.emacs.d/elpa/vterm-20221118.1354/build/CMakeFiles/run.dir
+/Users/pengyo/.emacs.d/elpa/vterm-20221118.1354/build/CMakeFiles/edit_cache.dir
+/Users/pengyo/.emacs.d/elpa/vterm-20221118.1354/build/CMakeFiles/rebuild_cache.dir

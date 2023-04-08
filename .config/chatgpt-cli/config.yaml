@@ -1,0 +1,9 @@
+openai:
+  api_key: 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
+  default_prompt:
+  - content: You are ChatGPT, a language model trained by OpenAI. Now you are responsible
+      for answering any questions the user asks.
+    role: system
+proxy:
+  http_proxy: http://127.0.0.1:7890
+  https_proxy: http://127.0.0.1:7890

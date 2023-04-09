@@ -1,4 +1,3 @@
-
 (defun code-compile ()
   (interactive)
   (unless (file-exists-p "Makefile")
@@ -132,5 +131,6 @@
   (beginning-of-line)
   (set-mark (point))
   (end-of-line))
+
 
 (provide 'init-fun)

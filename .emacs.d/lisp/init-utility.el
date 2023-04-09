@@ -67,11 +67,16 @@
 
 
 ;; Format-all
+(use-package format-all)
 (add-hook 'prog-mode-hook 'format-all-mode)
 (add-hook 'format-all-mode-hook 'format-all-ensure-formatter)
 
+(use-package drag-stuff)
 (drag-stuff-mode t)
 (drag-stuff-global-mode 1)
 (drag-stuff-define-keys)
+;; Smart paren
+(require 'smartparens-config)
+(ace-pinyin-global-mode +1)
 
 (provide 'init-utility)

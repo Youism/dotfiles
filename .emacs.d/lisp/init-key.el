@@ -1,6 +1,7 @@
 ;; replaces forward-sentence
 ;; ** Global Keybindings
 (require 'init-fun)
+(require 'advance-words-count)
 (use-package general)
 (general-define-key
  "C-c k" 'kill-this-buffer
@@ -25,8 +26,9 @@
  "C-c f" 'find-in-ssd
  "C-x <right>" 'my-next-buffer
  "C-x <left>" 'my-previous-buffer
- "M-j" 'jump-char-forward
- "C-S-j" 'jump-char-forward-set-mark
+ "M-j" 'avy-goto-char-2
+ "M-g g" 'avy-goto-line
+ "M-g w" 'avy-goto-word-1
  "C-e" 'select-line-to-the-end
  )
 
@@ -36,6 +38,7 @@
 (global-unset-key (kbd "C-."))
 
 ;; Space keybindings
+(use-package expand-region)
 (general-define-key
  "C-=" 'er/expand-region
  "C-SPC b b" 'bm-toggle
@@ -48,6 +51,8 @@
  "C-SPC f f" 'vimish-fold
  "C-SPC f d" 'vimish-fold-delete
  "C-SPC f a" 'format-all-buffer
+ "C-SPC w" 'advance-words-count
+ "C-SPC j" 'avy-goto-char
  )
 
 ;; C-, keybindings
@@ -92,7 +97,7 @@
 (global-set-key [next] 'good-scroll-up-full-screen)
 (global-set-key [prior] 'good-scroll-down-full-screen)
 
-
+(use-package easy-kill)
 (global-set-key [remap kill-ring-save] 'easy-kill)
 (global-set-key [remap mark-sexp] 'easy-mark)
 (put 'narrow-to-region 'disabled nil)

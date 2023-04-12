@@ -44,7 +44,7 @@
 (add-hook 'text-mode-hook 'visual-line-mode)
 
 ;; Overwrite selected text
-(delete-selection-mode t)
+(delete-selection-mode -1)
 
 (require 'lsp-mode)
 

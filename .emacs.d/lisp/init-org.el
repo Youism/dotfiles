@@ -131,7 +131,7 @@
   :after org
   :hook (org-mode . org-bullets-mode)
   :custom
-  (org-bullets-bullet-list '("❀" "✪" "●" "○" "✹" "✦" "·")))
+  (org-bullets-bullet-list '("❀" "☯" "✪" "●" "○" "✹" "✦" "·")))
 ;; (setq org-list-demote-modify-bullet
 ;;       '(("1." . "❶") ("2." . "❷") ("3." . "❸") ("4." . "❹") ("5." . "❺") ("-" "")))
 

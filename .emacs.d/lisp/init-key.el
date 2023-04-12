@@ -3,6 +3,9 @@
 (require 'init-fun)
 (require 'advance-words-count)
 (use-package general)
+
+(global-unset-key (kbd "C-o"))
+
 (general-define-key
  "C-c k" 'kill-this-buffer
  "C-c e" 'eval-buffer
@@ -30,6 +33,8 @@
  "M-g g" 'avy-goto-line
  "M-g w" 'avy-goto-word-1
  "C-e" 'select-line-to-the-end
+ "C-a" 'select-line-to-the-start
+ "C-o" 'insert-line-above
  )
 
 (global-unset-key (kbd "<escape>"))
@@ -46,8 +51,7 @@
  "C-SPC b p" 'bm-previous
  "C-SPC s" 'replace-string
  "C-SPC c" 'sp-change-enclosing
- "C-SPC d" 'delete-current-line
- "C-SPC C-d" 'total-delete-line
+ "C-SPC DEL" 'total-delete-line
  "C-SPC f f" 'vimish-fold
  "C-SPC f d" 'vimish-fold-delete
  "C-SPC f a" 'format-all-buffer

@@ -64,7 +64,7 @@
   (interactive)
   (find-file "/Volumes/Samsung_T5/" ))
 
-(defvar my-window-height (/ (* 2 (window-height)) 3))
+(defvar my-window-height (/ (window-height) 2))
 (defun my-scroll-up ()
   (interactive)
   (scroll-up my-window-height))
@@ -112,7 +112,7 @@
 
 (defvar zsh-file "~/.zshrc")
 (defvar init-file "~/.emacs.d/init.el")
-(defvar kbd-file "~/.emacs.d/kbd.el")
+(defvar kbd-file "~/.emacs.d/lisp/init-key.el")
 
 (defun open-zsh-file ()
   (interactive)
@@ -131,6 +131,24 @@
   (beginning-of-line)
   (set-mark (point))
   (end-of-line))
+
+
+(defun select-line-to-the-start ()
+  (interactive)
+  (end-of-line)
+  (set-mark (point))
+  (beginning-of-line))
+
+
+(defun insert-line-above ()
+  (interactive)
+  (previous-line)
+  (end-of-line)
+  (newline-and-indent))
+
+
+
+
 
 
 (provide 'init-fun)

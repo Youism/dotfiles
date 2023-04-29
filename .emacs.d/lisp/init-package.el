@@ -15,4 +15,14 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; Load the user's shell path
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+;; Load the user's shell environment
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
+
 (provide 'init-package)

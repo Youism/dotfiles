@@ -27,7 +27,7 @@
 (use-package multiple-cursors)
 (require 'multiple-cursors)
 (windmove-default-keybindings)
-(pending-delete-mode t)
+
 
 (require 'lsp)
 (require 'lsp-haskell)

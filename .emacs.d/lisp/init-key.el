@@ -5,9 +5,10 @@
 (use-package general)
 
 (global-unset-key (kbd "C-o"))
-
+(global-unset-key (kbd "C-s-p"))
 (general-define-key
  "C-c k" 'kill-this-buffer
+ "C-q" 'read-only-mode
  "C-c e" 'eval-buffer
  "C-c t" 'vterm-other-window
  "C-c <f5>" 'treemacs
@@ -57,6 +58,9 @@
  "C-SPC f a" 'format-all-buffer
  "C-SPC w" 'advance-words-count
  "C-SPC j" 'avy-goto-char
+ "C-SPC e m" 'org-babel-execute-src-block
+ "C-SPC e p" 'org-latex-export-to-pdf
+ "C-SPC u r" 'uncomment-region
  )
 
 ;; C-, keybindings

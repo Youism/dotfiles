@@ -102,6 +102,7 @@ export   GUILE_AUTO_COMPILE=0
 alias ls="exa"
 alias l="exa --long --header --git --icons --all"
 alias tree="exa --icons --tree --level=4 -a -I=.git --git-ignore"
+alias cat="bat"
 # alias tree="exa --icons --tree --level=4 -a "
 alias bi="brew install"
 alias bic="brew install --cask"
@@ -132,6 +133,7 @@ alias gll="git lol"
 alias tl='tldr --list | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
 alias sd="cd /Volumes/Samsung_T5/"
 alias clash="op /Applications/ClashX.app"
+alias cloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
 # end alias defination
 
 export  PATH=/usr/bin:$PATH
@@ -153,6 +155,9 @@ export   LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 export   CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 export  HOMEBREW_NO_AUTO_UPDATE=1
 export  all_proxy=socks5://127.0.0.1:7890
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+export PUPPETEER_EXECUTABLE_PATH=`which chromium`
+
 git config --global http.proxy socks5://127.0.0.1:7890
 git config --global https.proxy socks5://127.0.0.1:7890
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
@@ -182,4 +187,15 @@ kclash ()
 init-rev ()
 {
   cp -r /Volumes/Samsung_T5/github/reveal-ppt/* .
+}
+
+init-git()
+{
+    # 初始化 Git 仓库
+    git init
+
+    # 添加文件并提交
+    echo "Hello World!" > README.md
+    git add .
+    git commit -m "Initial commit"
 }

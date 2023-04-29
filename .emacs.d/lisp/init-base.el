@@ -4,6 +4,5 @@
 ;; set path
 (setenv "PATH" (concat (getenv "PATH") ":/Users/pengyo/bin/"))
 (add-to-list 'exec-path "/Users/pengyo/bin/")
-
+(setq ob-mermaid-cli-path "/opt/homebrew/bin/mmdc")
 (provide 'init-base)
-

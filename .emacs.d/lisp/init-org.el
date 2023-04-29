@@ -1,3 +1,5 @@
+
+(require 'init-var)
 (defun efs/org-font-setup ()
   ;; Replace list hyphen with dot
   (font-lock-add-keywords 'org-mode
@@ -65,12 +67,13 @@
 (setq org-lowest-priority ?E)
 
 ;; org agenda
-(setq org-directory "/Volumes/Samsung_T5/Document/RoamNotes/")
+;; (setq org-directory "/Volumes/Samsung_T5/Document/RoamNotes/")
+
 (setq org-agenda-files '("Tasks.org" "Tasks.org_archive"))
 
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+      '((sequence "TODO(t)" "|" "DONE(d!)")
 	(sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
 
 
@@ -124,14 +127,14 @@
 		 (org-agenda-files org-agenda-files)))))))
 
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "/Volumes/Samsung_T5/Document/RoamNotes/Tasks.org" "Inbox")
+      '(("t" "Todo" entry (file+headline task-dir "Inbox")
          "* TODO %?\n  %i\n")))
 
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode)
   :custom
-  (org-bullets-bullet-list '("❀" "☯" "✪" "●" "○" "✹" "✦" "·")))
+  (org-bullets-bullet-list '("❀" "☯" "✪" "✡" "❈" "●" "○" "✹" "✦" "·")))
 ;; (setq org-list-demote-modify-bullet
 ;;       '(("1." . "❶") ("2." . "❷") ("3." . "❸") ("4." . "❹") ("5." . "❺") ("-" "")))
 
@@ -146,7 +149,7 @@
 (use-package org-roam
   :ensure t
   :custom
-  (org-roam-directory (file-truename "/Volumes/Samsung_T5/Document/RoamNotes"))
+  (org-roam-directory (file-truename org-directory))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
@@ -160,5 +163,13 @@
   (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
+
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((mermaid . t)
+   (scheme . t)))
+;; Image Parts
+(setq org-image-actual-width nil)
 
 (provide 'init-org)

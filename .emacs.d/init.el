@@ -129,6 +129,7 @@ Otherwise the startup will be very slow. "
 (require 'init-package)
 (require 'init-ui)
 (require 'init-base)
+(require 'init-var)
 (require 'init-org)
 (require 'init-lsp)
 (require 'init-which)

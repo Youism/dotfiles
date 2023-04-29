@@ -171,5 +171,6 @@
    (scheme . t)))
 ;; Image Parts
 (setq org-image-actual-width nil)
+(setq org-startup-folded 'content)
 
 (provide 'init-org)

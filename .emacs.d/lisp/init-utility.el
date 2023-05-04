@@ -79,4 +79,9 @@
 (require 'smartparens-config)
 (ace-pinyin-global-mode +1)
 
+
+;; ivy
+(setq ivy-use-selectable-prompt nil)
+(setq ivy-keyboard-quit-action nil)
+
 (provide 'init-utility)

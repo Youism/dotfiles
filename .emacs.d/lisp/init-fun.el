@@ -1,3 +1,4 @@
+(require 'init-var)
 (defun code-compile ()
   (interactive)
   (unless (file-exists-p "Makefile")
@@ -146,9 +147,51 @@
   (end-of-line)
   (newline-and-indent))
 
+(defun my-forward-word ()
+  (interactive)
+  (set-mark (point))
+  (forward-word))
 
+(defun my-backward-word ()
+  (interactive)
+  (set-mark (point))
+  (backward-word))
 
+(defun my-forward-sentence ()
+  (interactive)
+  (set-mark (point))
+  (forward-sentence))
 
+(defun my-backward-sentence()
+  (interactive)
+  (set-mark (point))
+  (backward-sentence))
 
+;; Back to the latt position
+(defvar-local my-track-prev-pos-marker nil
+  "Buffer-local marker to remember the previous editing position.")
+
+(add-hook 'pre-command-hook 'my-track-prev-pos-pre-command)
+
+(defun my-track-prev-pos-pre-command ()
+  "Track the previous editing position in `my-track-prev-pos-marker'."
+  (unless (eq this-command 'my-track-prev-pos-jump)
+    (if (markerp my-track-prev-pos-marker)
+        (set-marker my-track-prev-pos-marker (point))
+      (setq my-track-prev-pos-marker (point-marker)))))
+
+(add-hook 'kill-buffer-hook 'my-track-prev-pos-kill-buffer-hook)
+
+(defun my-track-prev-pos-kill-buffer-hook ()
+  "Reclaim the buffer-local marker."
+  (setq my-track-prev-pos-marker nil))
+
+(defun my-track-prev-pos-jump ()
+  "Jump to the previous editing position."
+  (interactive)
+  (when (markerp my-track-prev-pos-marker)
+    (let ((prev (marker-position my-track-prev-pos-marker)))
+      (set-marker my-track-prev-pos-marker (point))
+      (goto-char prev))))
 
 (provide 'init-fun)

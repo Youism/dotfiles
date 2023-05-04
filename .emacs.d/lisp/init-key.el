@@ -2,15 +2,19 @@
 ;; ** Global Keybindings
 (require 'init-fun)
 (require 'advance-words-count)
+(require 'emacs-surround)
 (use-package general)
 
 (global-unset-key (kbd "C-o"))
 (global-unset-key (kbd "C-s-p"))
 (general-define-key
  "C-c k" 'kill-this-buffer
- "C-q" 'read-only-mode
+ "C-c b" 'my-track-prev-pos-jump
  "C-c e" 'eval-buffer
- "C-c t" 'vterm-other-window
+ "C-c t t" 'vterm-other-window
+ "C-c t c" 'multi-vterm
+ "C-c t n" 'multi-vterm-next
+ "C-c t p" 'multi-vterm-prev
  "C-c <f5>" 'treemacs
  "C-c M-r" 'sp-wrap-round
  "C-c M-c" 'sp-wrap-curly
@@ -19,7 +23,7 @@
  "C-c u" 'sp-unwrap-sexp
  "M-n" 'good-scroll-up
  "M-p" 'good-scroll-down
- "C-c l i" 'lsp-ui-imenu
+ ;; "C-c l i" 'lsp-ui-imenu
  "M-g j" 'dumb-jump-hydra/body
  "C-v" 'my-scroll-up
  "M-v" 'my-scroll-down
@@ -31,13 +35,21 @@
  "C-x <right>" 'my-next-buffer
  "C-x <left>" 'my-previous-buffer
  "M-j" 'avy-goto-char-2
- "M-g g" 'avy-goto-line
  "M-g w" 'avy-goto-word-1
+ )
+
+;; Rewrite the default keybindings
+(general-define-key
+ "C-q" 'emacs-surround
  "C-e" 'select-line-to-the-end
  "C-a" 'select-line-to-the-start
  "C-o" 'insert-line-above
+ "M-g M-g" 'avy-goto-line
+ "M-f" 'forward-word
+ "M-b" 'backward-word
+ "M-a" 'my-backward-sentence
+ "M-e" 'my-forward-sentence
  )
-
 (global-unset-key (kbd "<escape>"))
 (global-set-key (kbd "<escape>") (kbd "C-g"))
 (global-unset-key (kbd "C-SPC"))
@@ -50,17 +62,20 @@
  "C-SPC b b" 'bm-toggle
  "C-SPC b n" 'bm-next
  "C-SPC b p" 'bm-previous
- "C-SPC s" 'replace-string
- "C-SPC c" 'sp-change-enclosing
- "C-SPC DEL" 'total-delete-line
+ "C-SPC r r" 'replace-regexp
+ "C-SPC r s" 'replace-string
+ "C-SPC p c " 'sp-change-enclosing
  "C-SPC f f" 'vimish-fold
  "C-SPC f d" 'vimish-fold-delete
  "C-SPC f a" 'format-all-buffer
- "C-SPC w" 'advance-words-count
+ "C-SPC c w" 'advance-words-count
  "C-SPC j" 'avy-goto-char
  "C-SPC e m" 'org-babel-execute-src-block
  "C-SPC e p" 'org-latex-export-to-pdf
  "C-SPC u r" 'uncomment-region
+ "C-SPC i d" 'image-dired
+ "C-SPC q q" 'quoted-insert
+ "C-SPC i b" 'ibuffer
  )
 
 ;; C-, keybindings
@@ -89,6 +104,10 @@
  "C-;" 'add-common-symbol
  )
 
+(general-define-key
+ :keymaps 'vterm-mode
+ "C-c C-c" 'vterm-send-C-c
+ )
 ;; Dunp-Jump
 (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
@@ -105,8 +124,5 @@
 (global-set-key [next] 'good-scroll-up-full-screen)
 (global-set-key [prior] 'good-scroll-down-full-screen)
 
-(use-package easy-kill)
-(global-set-key [remap kill-ring-save] 'easy-kill)
-(global-set-key [remap mark-sexp] 'easy-mark)
 (put 'narrow-to-region 'disabled nil)
 (provide 'init-key)

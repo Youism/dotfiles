@@ -131,7 +131,6 @@ Otherwise the startup will be very slow. "
 (require 'init-base)
 (require 'init-var)
 (require 'init-org)
-(require 'init-lsp)
 (require 'init-which)
 (require 'init-utility)
 (require 'init-latex)
@@ -139,6 +138,7 @@ Otherwise the startup will be very slow. "
 (require 'init-fun)
 (require 'init-key)
 (require 'init-company)
+(require 'init-eglot)
 (require 'init-term)
 (require 'init-git)
 
@@ -146,3 +146,4 @@ Otherwise the startup will be very slow. "
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here
+(put 'upcase-region 'disabled nil)

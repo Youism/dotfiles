@@ -29,10 +29,15 @@
 (windmove-default-keybindings)
 
 
-(require 'lsp)
-(require 'lsp-haskell)
-;; Hooks so haskell and literate haskell major modes trigger LSP setup
-(add-hook 'haskell-mode-hook #'lsp)
-(add-hook 'haskell-literate-mode-hook #'lsp)
+;; (require 'lsp)
+;; (require 'lsp-haskell)
+;; ;; Hooks so haskell and literate haskell major modes trigger LSP setup
+;; (add-hook 'haskell-mode-hook #'lsp)
+;; (add-hook 'haskell-literate-mode-hook #'lsp)
 (good-scroll-mode 1)
+
+;; (setq image-dired-dir "/Volumes/Samsung_T5/Pictures")
+;; (setq image-dired-external-viewer "/usr/bin/qlmanage -p")
+;; (setq image-dired-external-viewer-args (list "-p"))
+
 (provide 'init-dired)

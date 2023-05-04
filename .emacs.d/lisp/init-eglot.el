@@ -1,0 +1,6 @@
+(require 'init-company)
+(add-hook 'python-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'java-mode-hook 'eglot-ensure)
+(provide 'init-eglot)

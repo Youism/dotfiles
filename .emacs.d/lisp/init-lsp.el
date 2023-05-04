@@ -86,15 +86,15 @@
 (yas-global-mode 1)
 ;;# NO ADDITIONAL IMPORTS ALLOWED!
 ;; Enable autopep8
-(use-package py-autopep8
-  :config
-  (setq py-autopep8-options '("--max-line-length=100" "--aggressive"))
-  :hook ((python-mode) . py-autopep8-mode))
+;; (use-package py-autopep8
+;;   :config
+;;   (setq py-autopep8-options '("--max-line-length=100" "--aggressive"))
+;;   :hook ((python-mode) . py-autopep8-mode))
 
-(use-package python-black
-  :demand t
-  :after python
-  :hook (python-mode . python-black-on-save-mode-enable-dwim))
+;; (use-package python-black
+;;   :demand t
+;;   :after python
+;;   :hook (python-mode . python-black-on-save-mode-enable-dwim))
 
 (put 'upcase-region 'disabled nil)
 

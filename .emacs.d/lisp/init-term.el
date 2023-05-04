@@ -10,4 +10,8 @@
   (setq vterm-shell "zsh")
   (setq vterm-max-scrollback 10000))
 
+(use-package multi-vterm :ensure t)
+
+(setq multi-vterm-dedicated-window-height 10)
+(setq multi-vterm-dedicated-window-height-percent 20)
 (provide 'init-term)

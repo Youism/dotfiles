@@ -25,7 +25,7 @@
 (defvar efs/default-variable-font-size 160)
 
 ;; Make frame transparency overridable
-(defvar efs/frame-transparency '(98 . 98))
+(defvar efs/frame-transparency '(96 . 96))
 
 (setq inhibit-startup-message t)
 
@@ -107,4 +107,10 @@
 (setq dashboard-set-heading-icons t)
 (setq dashboard-set-file-icons t)
 (setq dashboard-set-navigator t)
+
+
+(global-visual-line-mode 1) ; 1 for on, 0 for off.
+(add-hook 'org-mode-hook
+	  (lambda()
+	    (setq truncate-lines nil)))
 (provide 'init-ui)

@@ -28,5 +28,7 @@
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
-
+(use-package yasnippet :ensure t)
+(require 'yasnippet)
+(yas-global-mode 1)
 (provide 'init-company)

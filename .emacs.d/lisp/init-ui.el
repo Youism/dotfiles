@@ -67,10 +67,10 @@
 ;; Set the variable pitch face
 (set-face-attribute 'variable-pitch nil :font "Sarasa Term SC" :height efs/default-variable-font-size :weight 'regular)
 
+(defvar theme-list '(doom-ayu-mirage doom-palenight doom-ayu-dark doom-badger doom-challenger-deep doom-dark+ doom-dracula doom-earl-grey doom-ephemeral doom-fairy-floss doom-gruvbox doom-henna doom-homage-black doom-lantern doom-monokai-octagon doom-monokai-pro doom-one doom-opera doom-outrun-electric doom-tokyo-night doom-tomorrow-night doom-vibrant doom-sourcerer doom-ephemeral doom-fairy-floss doom-feather-dark doom-feather-light doom-flatwhite doom-gruvbox doom-gruvbox-light doom-henna doom-homage-black doom-homage-white doom-horizon doom-Iosvkem doom-ir-black doom-lantern doom-laserwave doom-manegarm doom-material doom-material-dark doom-meltbus doom-miramare doom-molokai doom-monokai-classic doom-monokai-machine doom-monokai-octagon doom-monokai-pro doom-moonlight doom-nord doom-nord-aurora doom-nord-light doom-nova doom-oceanic-next doom-old-hope doom-one doom-one-light doom-opera doom-opera-light doom-outrun-electricported doom-palenight doom-peacock doom-pine doom-rouge doom-snazzy doom-solarized-dark doom-solarized-light doom-sourcerer doom-spacegrey doom-tokyo-night doom-tomorrow-day doom-tomorrow-night doom-vibrant doom-wilmersdorf doom-xcode doom-zenburn))
 
-
-(defvar theme-list '(doom-ayu-mirage doom-palenight doom-ayu-dark doom-badger doom-challenger-deep doom-dark+ doom-dracula doom-earl-grey doom-ephemeral doom-fairy-floss doom-gruvbox doom-henna doom-homage-black doom-lantern doom-monokai-octagon doom-monokai-pro doom-one doom-opera doom-outrun-electric doom-tokyo-night doom-tomorrow-night doom-vibrant doom-sourcerer doom-ephemeral  doom-fairy-floss        doom-feather-dark doom-feather-light      doom-flatwhite          doom-gruvbox            doom-gruvbox-light      doom-henna      doom-homage-black  doom-homage-white  doom-horizon      doom-Iosvkem    doom-ir-black   doom-lantern    doom-laserwave  doom-manegarm   doom-material      doom-material-dark  doom-meltbus        doom-miramare   doom-molokai    doom-monokai-classic doom-monokai-machine doom-monokai-octagon doom-monokai-pro    doom-monokai-ristret  doom-moonlight     doom-nord       doom-nord-aurora doom-nord-light doom-nova doom-oceanic-next doom-old-hope doom-one doom-one-light doom-opera doom-opera-light doom-outrun-electricported doom-palenight doom-peacock doom-pine  doom-rouge  doom-snazzy doom-solarized-dark  doom-solarized-light doom-sourcerer doom-spacegrey doom-tokyo-night doom-tomorrow-day doom-tomorrow-night doom-vibrant doom-wilmersdorf doom-xcode doom-zenburn))
 ;; (defvar theme-list '(doom-ayu-mirage))
+
 (defvar theme-name (nth (random (length theme-list)) theme-list))
 (use-package doom-themes
   :init (load-theme theme-name t))
@@ -153,6 +153,7 @@
 ;; Set whitespace actions.
 (setq-default whitespace-action
               '(cleanup auto-cleanup))
+(require 'golden-ratio)
 
-
+(golden-ratio-mode 1)
 (provide 'init-ui)

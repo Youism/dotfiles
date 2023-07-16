@@ -18,7 +18,6 @@
  "C-c <f5>" 'treemacs
  "C-c M-r" 'sp-wrap-round
  "C-c M-c" 'sp-wrap-curly
- "C-c RET" 'yas-expand
  "<f5>" 'treemacs
  "C-c u" 'sp-unwrap-sexp
  "M-n" 'good-scroll-up
@@ -76,6 +75,8 @@
  "C-SPC i d" 'image-dired
  "C-SPC q q" 'quoted-insert
  "C-SPC i b" 'ibuffer
+ "C-SPC s s" 'server-start
+ "C-SPC RET" 'yas-expand
  )
 
 ;; C-, keybindings
@@ -100,6 +101,11 @@
  )
 
 (general-define-key
+ :keymaps 'rust-mode-map
+ "C-;" 'add-divided-symbol
+ )
+
+(general-define-key
  :keymap 'python-mode-map
  "C-;" 'add-common-symbol
  )
@@ -108,6 +114,12 @@
  :keymaps 'vterm-mode
  "C-c C-c" 'vterm-send-C-c
  )
+
+(general-define-key
+ :keymaps 'org-mode-map
+ "C-c d" 'org-to-docx
+ )
+
 ;; Dunp-Jump
 (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 (setq xref-show-definitions-function #'xref-show-definitions-completing-read)

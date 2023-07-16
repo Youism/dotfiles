@@ -129,14 +129,12 @@
 
 (defun select-line-to-the-end ()
   (interactive)
-  (beginning-of-line)
   (set-mark (point))
   (end-of-line))
 
 
 (defun select-line-to-the-start ()
   (interactive)
-  (end-of-line)
   (set-mark (point))
   (beginning-of-line))
 
@@ -193,5 +191,15 @@
     (let ((prev (marker-position my-track-prev-pos-marker)))
       (set-marker my-track-prev-pos-marker (point))
       (goto-char prev))))
+
+(defun org-to-docx ()
+  "Converts the current .org file to a .docx file using Pandoc."
+  (interactive)
+  (shell-command
+   (concat "pandoc "
+           (buffer-file-name)
+           " -o "
+           (file-name-sans-extension (buffer-file-name))
+           ".docx")))
 
 (provide 'init-fun)

@@ -58,7 +58,7 @@ export ZSH=~/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+    git
   zsh-syntax-highlighting
   zsh-autosuggestions
 )
@@ -94,11 +94,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export all_proxy=https://127.0.0.1:7890
+export LC_ALL=en_US.UTF-8
 export   TERM=xterm-256color
 export  theme_short_path=yes
 export   GUILE_AUTO_COMPILE=0
 # aliases
 alias e="emacsclient"
+alias big="du -sh"
+alias off="networksetup -setairportpower enO off"
+alias on="networksetup -setairportpower enO on"
 alias ls="exa"
 alias l="exa --long --header --git --icons --all"
 alias tree="exa --icons --tree --level=4 -a -I=.git --git-ignore"
@@ -142,7 +146,6 @@ export  PATH=/usr/local/sbin:$PATH
 
 # export  PATH $HOME/.cargo/bin $PATH
 export HOMEBREW_NO_AUTO_UPDATE=1
-export OPENAI_API_KEY='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'
 
 export   PATH=/usr/localwbin:$PATH
 export   PATH=/opt/homebrew/bin:$PATH

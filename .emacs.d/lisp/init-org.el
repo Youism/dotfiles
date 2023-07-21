@@ -1,4 +1,3 @@
-
 (require 'init-var)
 (defun efs/org-font-setup ()
   ;; Replace list hyphen with dot
@@ -48,7 +47,7 @@
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
 
-(setq org-reveal-root "file:///Volumes/Samsung_T5/github/reveal-ppt/reveal.js")
+(setq org-reveal-root revealjs-path)
 ;; (setq org-reveal-hlevel 2)
 
 ;; (defvar bootstrap-version)

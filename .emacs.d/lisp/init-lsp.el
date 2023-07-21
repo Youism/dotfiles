@@ -62,7 +62,7 @@
 
 
 
-(setq lsp-clients-pyls-library-directories "~/Library/Python/3.10/bin")
+;; (setq lsp-clients-pyls-library-directories "~/Library/Python/3.10/bin")
 (put 'downcase-region 'disabled nil)
 
 
